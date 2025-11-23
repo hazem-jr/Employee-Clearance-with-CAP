@@ -1,0 +1,19 @@
+###
+GET http://localhost:4004/odata/v4/catalog/clearance
+
+###
+GET http://localhost:4004/odata/v4/catalog/clearance('01536291-d563-47ed-8f86-e947edc4c2df')
+
+###insert new book 
+POST  http://localhost:4004/odata/v4/catalog/clearance
+Content-Type: application/json
+
+   {
+      "employeeName": "hazem",
+      "employeeNumber": "10000000001",
+      "nationality": "EG",
+      "department": "IT",
+      "title": "Senior",
+      "reason": "Travelling",
+      "notes": "NON"
+    }

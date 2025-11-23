@@ -1,0 +1,594 @@
+<mvc:View
+    controllerName="clearance001.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <tnt:ToolHeader
+            id="shellLikeToolHeader"
+            class="sapUiTinyMargin"
+        >
+            <Button
+                id="_IDGenButton"
+                icon="sap-icon://menu2"
+                type="Transparent"
+                tooltip="Menu"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData1"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Button>
+            <Image
+                id="_IDGenImage"
+                src="test-resources/sap/tnt/images/SAP_Logo.png"
+                decorative="false"
+                press="onLogoPressed"
+                tooltip="SAP Logo"
+                width="60px"
+                height="30px"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData2"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Image>
+            <Title
+                text="Employee Clearance"
+                wrapping="false"
+                id="emp_clearance_ID"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData3"
+                        priority="Disappear"
+                    />
+                </layoutData>
+            </Title>
+            
+
+            <ToolbarSpacer id="_IDGenToolbarSpacer" />
+            <SearchField
+                width="25rem"
+                id="searchField"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData5"
+                        priority="Low"
+                        group="1"
+                    />
+                </layoutData>
+            </SearchField>
+            <Button
+                visible="false"
+                icon="sap-icon://search"
+                type="Transparent"
+                id="searchButton"
+                tooltip="Search"
+            />
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton"
+                icon="sap-icon://da"
+                type="Transparent"
+                tooltip="Joule"
+                text="Joule"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData6"
+                        group="2"
+                    />
+                </layoutData>
+            </OverflowToolbarButton>
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton1"
+                icon="sap-icon://source-code"
+                type="Transparent"
+                tooltip="Action 1"
+                text="Action 1"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData7"
+                        group="2"
+                    />
+                </layoutData>
+            </OverflowToolbarButton>
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton2"
+                icon="sap-icon://card"
+                type="Transparent"
+                tooltip="Action 2"
+                text="Action 2"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData8"
+                        group="2"
+                    />
+                </layoutData>
+            </OverflowToolbarButton>
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton3"
+                icon="sap-icon://action-settings"
+                type="Transparent"
+                text="Settings"
+            />
+            <Button
+                id="_IDGenButton1"
+                icon="sap-icon://bell"
+                type="Transparent"
+                tooltip="Notification"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData9"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Button>
+            <tnt:ToolHeaderUtilitySeparator
+                id="_IDGenToolHeaderUtilitySeparator"
+            />
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton4"
+                icon="sap-icon://grid"
+                type="Transparent"
+                text="My Products"
+                tooltip="My Products"
+            />
+            <Avatar
+                id="_IDGenAvatar"
+                src=""
+                displaySize="XS"
+                press=".onAvatarPressed"
+                tooltip="Profile"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData10"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Avatar>
+        </tnt:ToolHeader>
+
+        <!-- side navigation -->
+        <HBox id="_IDGenHBox">
+            <VBox
+                id="_IDGenVBox"
+                renderType="Bare"
+                alignItems="Start"
+                height="100%"
+            >
+                <Button
+                    id="_IDGenButton3"
+                    text="Toggle"
+                    icon="sap-icon://menu2"
+                    press=".onCollapseExpandPress"
+                />
+
+                <tnt:SideNavigation
+                    id="sideNavigation"
+                    selectedKey="walked"
+                    expanded="true"
+                >
+                    <tnt:NavigationList id="_IDGenNavigationList1">
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem"
+                            text="Home"
+                            icon="sap-icon://home"
+                            press=".onGoToHome"
+                        />
+
+                            <tnt:NavigationListItem
+                                id="_IDGenNavigationListItem1"
+                                text="New Application"
+                                icon="sap-icon://people-connected"
+                                press=".onAddNewApplication"
+                            />
+                            <tnt:NavigationListItem
+                                id="_IDGenNavigationListItem2"
+                                text="View Applications"
+                                icon="sap-icon://building"
+                                press=".onViewApplications"
+                            >
+                            </tnt:NavigationListItem>
+                    </tnt:NavigationList>
+                    <tnt:fixedItem>
+                        <tnt:NavigationList id="_IDGenNavigationList2">
+                        </tnt:NavigationList>
+                    </tnt:fixedItem>
+                </tnt:SideNavigation>
+            </VBox>
+
+            <!-- input fields -->
+            <VBox id="_IDGenVBox2">
+                <Panel
+                    id="_IDGenPanel1"
+                    width="70rem"
+                    class="sapUiResponsiveMargin"
+                    visible="false"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar id="_IDGenOverflowToolbar">
+                            <Title
+                                id="_IDGenTitle"
+                                text="Fill the Form"
+                            />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <Breadcrumbs
+                        id="id_bc"
+                        currentLocationText="Add new item"
+                    >
+                        <Link
+                            id="id_link"
+                            text="Master"
+                        />
+                    </Breadcrumbs>
+
+                    <HBox id="id_inputs_hbox_1">
+                        <VBox id="id_vbox1">
+                            <Label
+                                id="id_ID_lbl"
+                                text="ID"
+                            />
+                            <Input
+                                placeholder="ID"
+                                id="id_ID"
+                                editable="false"
+                            />
+                        </VBox>
+                        <VBox id="id_vbox2">
+                            <Label
+                                id="id_employeeName_lbl"
+                                text="Employee Name"
+                            />
+                            <Input
+                                placeholder="Employee Name"
+                                id="id_employeeName"
+                            />
+                        </VBox>
+                        <VBox id="id_vbox3">
+                            <Label
+                                id="id_employeeNumber_lbl"
+                                text="Employee Number"
+                            />
+                            <Input
+                                placeholder="Employee Number"
+                                id="id_employeeNumber"
+                            />
+                        </VBox>
+
+                        <VBox id="id_vbox4">
+                            <Label
+                                id="id_nationality_lbl"
+                                text="Nationality"
+                            />
+                            <Input
+                                placeholder="Nationality"
+                                id="id_nationality"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_inputs_hbox_2">
+                        <VBox id="id_vbox5">
+                            <Label
+                                id="id_department_lbl"
+                                text="Department"
+                            />
+                            <Input
+                                placeholder="Department"
+                                id="id_department"
+                            />
+                        </VBox>
+
+                        <VBox id="id_vbox6">
+                            <Label
+                                id="id_title_lbl"
+                                text="Title"
+                            />
+                            <Input
+                                placeholder="Title"
+                                id="id_title"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_inputs_hbox_3">
+                        <VBox id="id_vbox7">
+                            <Label
+                                id="id_reason_lbl"
+                                text="Exit Reason"
+                            />
+                            <!-- <Input
+                                placeholder="reason"
+                                id="id_reason"
+                            /> -->
+                            <RadioButtonGroup
+                                id="RBG_reason_ID"
+                                columns="2"
+                                selectedIndex="2"
+                                class="sapUiMediumMarginBottom"
+                            >
+                                <RadioButton
+                                    id="RB_resignation_id"
+                                    text="Resignation"
+                                />
+                                <RadioButton
+                                    id="RB_vacation_ID"
+                                    text="Vacation"
+                                />
+                            </RadioButtonGroup>
+                        </VBox>
+                    </HBox>
+                    <HBox id="_IDGenHBox1">
+                        <VBox id="id_vbox8">
+                            <Label
+                                id="id_notes_lbl"
+                                text="Notes"
+                            />
+                            <Input
+                                placeholder="Notes"
+                                id="id_notes"
+                                width="44rem"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_buttons_hbox_1">
+                        <VBox id="id_buttons_vbox_1">
+                            <Button
+                                id="submit_btn_id"
+                                press="submit"
+                                text="Submit"
+                            />
+                        </VBox>
+                    </HBox>
+                </Panel>
+                <Panel
+                    id="_IDGenPanel"
+                    headerText="All Applcations"
+                    visible="false"
+                    class="sapUiResponsiveMargin"
+                >
+                    <!-- all applications -->
+                    <Table
+                        id="_IDGenTable1"
+                        items="{/clearance}"
+                    >
+                        <columns>
+                            <Column id="_IDGenColumn">
+                                <Text
+                                    id="_IDGenText7"
+                                    text="Clearance Document ID"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn1">
+                                <Text
+                                    id="_IDGenText8"
+                                    text="Employee Name"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn2">
+                                <Text
+                                    id="_IDGenText9"
+                                    text="Employee Number"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn3">
+                                <Text
+                                    id="_IDGenText10"
+                                    text="Nationality"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn4">
+                                <Text
+                                    id="_IDGenText11"
+                                    text="Department"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn5">
+                                <Text
+                                    id="_IDGenText12"
+                                    text="Title"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn6">
+                                <Text
+                                    id="_IDGenText13"
+                                    text="Reason"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn7">
+                                <Text
+                                    id="_IDGenText14"
+                                    text="Notes"
+                                />
+                            </Column>
+                            <Column id="_IDGenColumn8">
+                                <Text
+                                    id="_IDGenText15"
+                                    text="Actions"
+                                />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem">
+                                <cells>
+                                    <Text
+                                        id="_IDGenText"
+                                        text="{ID}"
+                                    />
+                                    <Text
+                                        id="_IDGenText1"
+                                        text="{employeeName}"
+                                    />
+                                    <Text
+                                        id="_IDGenText2"
+                                        text="{employeeNumber}"
+                                    />
+                                    <Text
+                                        id="_IDGenText3"
+                                        text="{nationality}"
+                                    />
+                                    <Text
+                                        id="_IDGenText4"
+                                        text="{department}"
+                                    />
+                                    <Text
+                                        id="_IDGenText5"
+                                        text="{title}"
+                                    />
+                                    <Text
+                                        id="_IDGenText6"
+                                        text="{reason}"
+                                    />
+                                    <Text
+                                        id="_IDGenText77"
+                                        text="{notes}"
+                                    />
+                                    <Button
+                                        id="Actions_btn_id"
+                                        text="..."
+                                        press="onActionPressed($event)"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+
+                <!-- the Edit Panel -->
+             
+                <Panel
+                    id="_IDGenPanel2"
+                    width="70rem"
+                    class="sapUiResponsiveMargin"
+                    visible="false"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar id="_IDGenOverflowToolbar1">
+                            <Title
+                                id="_IDGenTitle111"
+                                text="Edit the Employee Clearance"
+                            />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <HBox id="id_inputs_hbox_111">
+                        <VBox id="id_vbox111">
+                            <Label
+                                id="id_ID_lbl111"
+                                text="ID"
+                            />
+                            <Input
+                                placeholder="ID"
+                                id="id_ID11"
+                                editable="false"
+                            />
+                        </VBox>
+                        <VBox id="id_vbox222">
+                            <Label
+                                id="id_employeeName_lbl11"
+                                text="Employee Name"
+                            />
+                            <Input
+                                placeholder="Employee Name"
+                                id="id_employeeName111"
+                            />
+                        </VBox>
+                        <VBox id="id_vbox33">
+                            <Label
+                                id="id_employeeNumber_lbl1"
+                                text="Employee Number"
+                            />
+                            <Input
+                                placeholder="Employee Number"
+                                id="id_employeeNumber1"
+                            />
+                        </VBox>
+
+                        <VBox id="id_vbox41">
+                            <Label
+                                id="id_nationality_lbl1"
+                                text="Nationality"
+                            />
+                            <Input
+                                placeholder="Nationality"
+                                id="id_nationality1"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_inputs_hbox_21">
+                        <VBox id="id_vbox51">
+                            <Label
+                                id="id_department_lbl1"
+                                text="Department"
+                            />
+                            <Input
+                                placeholder="Department"
+                                id="id_department1"
+                            />
+                        </VBox>
+
+                        <VBox id="id_vbox61">
+                            <Label
+                                id="id_title_lbl1"
+                                text="Title"
+                            />
+                            <Input
+                                placeholder="Title"
+                                id="id_title1"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_inputs_hbox_31">
+                        <VBox id="id_vbox71">
+                            <Label
+                                id="id_reason_lbl1"
+                                text="Exit Reason"
+                            />
+                            <Input
+                                placeholder="reason"
+                                id="id_reason"
+                                editable="false"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="_IDGenHBox11">
+                        <VBox id="id_vbox81">
+                            <Label
+                                id="id_notes_lbl1"
+                                text="Notes"
+                            />
+                            <Input
+                                placeholder="Notes"
+                                id="id_notes1"
+                                width="44rem"
+                            />
+                        </VBox>
+                    </HBox>
+                    <HBox id="id_buttons_hbox_11">
+                        <VBox id="id_buttons_vbox_11">
+                            <Button
+                                id="update_it_btn_id"
+                                press="onUpdateRecord"
+                                text="Update"
+                            />
+                        </VBox>
+                    </HBox>
+                </Panel>
+
+                
+            </VBox>
+        </HBox>
+    </Page>
+</mvc:View>
