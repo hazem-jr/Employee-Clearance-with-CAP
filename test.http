@@ -9,11 +9,12 @@ POST  http://localhost:4004/odata/v4/catalog/clearance
 Content-Type: application/json
 
    {
-      "employeeName": "hazem",
-      "employeeNumber": "10000000001",
+      "employeeName": "Ahmed",
+      "employeeNumber": "10000000006",
       "nationality": "EG",
-      "department": "IT",
+      "department": "PA",
       "title": "Senior",
-      "reason": "Travelling",
-      "notes": "NON"
+      "reason": "Resignation",
+      "notes": "",
+      "reqStatus":"P"
     }

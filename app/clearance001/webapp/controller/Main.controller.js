@@ -6,6 +6,7 @@ sap.ui.define([
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
+
 ], (Controller, MessageBox, Fragment, Filter, FilterOperator) => {
     "use strict";
 
@@ -13,17 +14,24 @@ sap.ui.define([
         onInit() {
         },
         submit: function () {
-
+            debugger;
             //var id = this.getView().byId("id_ID").getValue();
             var employeeName = this.getView().byId("id_employeeName").getValue();
             var employeeNumber = this.getView().byId("id_employeeNumber").getValue();
             var nationality = this.getView().byId("id_nationality").getValue();
             var department = this.getView().byId("id_department").getValue();
             var title = this.getView().byId("id_title").getValue();
-            var reason = this.getView().byId("id_reason").getValue();
-            var RD_Resignation = this.getView.byId("RB_resignation_id").getValue();
-            var RD_Vacation = this.getView.byId("RB_vacation_ID").getValue();
+            //var reason = this.getView().byId("id_reason").getValue();
+            var oRadioButtonGroup = this.getView().byId("RBG_reason_ID");
+            // var RD_Resignation = this.getView.byId("RB_resignation_id").getValue();
+            // var RD_Vacation = this.getView.byId("RB_vacation_ID").getValue();
             var notes = this.getView().byId("id_notes").getValue();
+
+            // the clearance Reason 
+            var oSelectedButton = oRadioButtonGroup.getSelectedButton();
+            if (oSelectedButton) {
+                var reason = oSelectedButton.getText();
+            }
 
             // Model - communcation btw BE and FE
             var oModel = this.getView().getModel();
@@ -197,7 +205,29 @@ sap.ui.define([
             }).catch(function (err) {
                 MessageBox.error("Error occured while update" + err);
             });
+        },
 
+        formatReqStatusText: function (sStatus) {
+           debugger ;
+            switch (sStatus) {
+                case "A":
+                    return "Approved";
+                case "R":
+                    return "Rejected";
+                default:
+                    return "Pending" ;      
+            }
+        },
+        formatReqStatusState: function (sStatus) {
+            debugger;
+            switch (sStatus) {
+                case "A":
+                    return sap.ui.core.ValueState.Success;
+                case "R":
+                    return sap.ui.core.ValueState.Error;
+                case "P":
+                    return sap.ui.core.ValueState.warning;
+            }
 
         }
     });

@@ -12,19 +12,6 @@
             id="shellLikeToolHeader"
             class="sapUiTinyMargin"
         >
-            <Button
-                id="_IDGenButton"
-                icon="sap-icon://menu2"
-                type="Transparent"
-                tooltip="Menu"
-            >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData1"
-                        priority="NeverOverflow"
-                    />
-                </layoutData>
-            </Button>
             <Image
                 id="_IDGenImage"
                 src="test-resources/sap/tnt/images/SAP_Logo.png"
@@ -53,7 +40,6 @@
                     />
                 </layoutData>
             </Title>
-            
 
             <ToolbarSpacer id="_IDGenToolbarSpacer" />
             <SearchField
@@ -75,7 +61,7 @@
                 id="searchButton"
                 tooltip="Search"
             />
-            <OverflowToolbarButton
+            <!-- <OverflowToolbarButton
                 id="_IDGenOverflowToolbarButton"
                 icon="sap-icon://da"
                 type="Transparent"
@@ -88,63 +74,9 @@
                         group="2"
                     />
                 </layoutData>
-            </OverflowToolbarButton>
-            <OverflowToolbarButton
-                id="_IDGenOverflowToolbarButton1"
-                icon="sap-icon://source-code"
-                type="Transparent"
-                tooltip="Action 1"
-                text="Action 1"
-            >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData7"
-                        group="2"
-                    />
-                </layoutData>
-            </OverflowToolbarButton>
-            <OverflowToolbarButton
-                id="_IDGenOverflowToolbarButton2"
-                icon="sap-icon://card"
-                type="Transparent"
-                tooltip="Action 2"
-                text="Action 2"
-            >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData8"
-                        group="2"
-                    />
-                </layoutData>
-            </OverflowToolbarButton>
-            <OverflowToolbarButton
-                id="_IDGenOverflowToolbarButton3"
-                icon="sap-icon://action-settings"
-                type="Transparent"
-                text="Settings"
-            />
-            <Button
-                id="_IDGenButton1"
-                icon="sap-icon://bell"
-                type="Transparent"
-                tooltip="Notification"
-            >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData9"
-                        priority="NeverOverflow"
-                    />
-                </layoutData>
-            </Button>
+            </OverflowToolbarButton> -->
             <tnt:ToolHeaderUtilitySeparator
                 id="_IDGenToolHeaderUtilitySeparator"
-            />
-            <OverflowToolbarButton
-                id="_IDGenOverflowToolbarButton4"
-                icon="sap-icon://grid"
-                type="Transparent"
-                text="My Products"
-                tooltip="My Products"
             />
             <Avatar
                 id="_IDGenAvatar"
@@ -190,23 +122,21 @@
                             press=".onGoToHome"
                         />
 
-                            <tnt:NavigationListItem
-                                id="_IDGenNavigationListItem1"
-                                text="New Application"
-                                icon="sap-icon://people-connected"
-                                press=".onAddNewApplication"
-                            />
-                            <tnt:NavigationListItem
-                                id="_IDGenNavigationListItem2"
-                                text="View Applications"
-                                icon="sap-icon://building"
-                                press=".onViewApplications"
-                            >
-                            </tnt:NavigationListItem>
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem1"
+                            text="New Application"
+                            icon="sap-icon://people-connected"
+                            press=".onAddNewApplication"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem2"
+                            text="View Applications"
+                            icon="sap-icon://building"
+                            press=".onViewApplications"
+                        />
                     </tnt:NavigationList>
                     <tnt:fixedItem>
-                        <tnt:NavigationList id="_IDGenNavigationList2">
-                        </tnt:NavigationList>
+                        <tnt:NavigationList id="_IDGenNavigationList2" />
                     </tnt:fixedItem>
                 </tnt:SideNavigation>
             </VBox>
@@ -227,24 +157,15 @@
                             />
                         </OverflowToolbar>
                     </headerToolbar>
-                    <Breadcrumbs
-                        id="id_bc"
-                        currentLocationText="Add new item"
-                    >
-                        <Link
-                            id="id_link"
-                            text="Master"
-                        />
-                    </Breadcrumbs>
 
                     <HBox id="id_inputs_hbox_1">
                         <VBox id="id_vbox1">
                             <Label
                                 id="id_ID_lbl"
-                                text="ID"
+                                text="Request ID"
                             />
                             <Input
-                                placeholder="ID"
+                                placeholder=""
                                 id="id_ID"
                                 editable="false"
                             />
@@ -331,6 +252,21 @@
                             </RadioButtonGroup>
                         </VBox>
                     </HBox>
+                    <HBox id="_IDGenHBox1111">
+                        <VBox id="id_vbox88">
+                            <Label
+                                id="id_Status_lbl"
+                                text="Status"
+                            />
+                            <ObjectStatus
+                                id="status_ID"
+                                class="sapUiSmallMarginBottom"
+                                text="Unknown"
+                                state="None"
+                            />
+                        </VBox>
+                    </HBox>
+
                     <HBox id="_IDGenHBox1">
                         <VBox id="id_vbox8">
                             <Label
@@ -408,6 +344,12 @@
                                     text="Reason"
                                 />
                             </Column>
+                            <Column id="_IDGenColumn66">
+                                <Text
+                                    id="_IDGenText133"
+                                    text="Request Status"
+                                />
+                            </Column>
                             <Column id="_IDGenColumn7">
                                 <Text
                                     id="_IDGenText14"
@@ -452,6 +394,11 @@
                                         id="_IDGenText6"
                                         text="{reason}"
                                     />
+                                    <ObjectStatus
+                                        id="_IDGenObjectStatus"
+                                        text="{path: 'reqStatus', formatter: '.formatReqStatusText'}"
+                                        state="{path: 'reqStatus', formatter: '.formatReqStatusState'}"
+                                    />
                                     <Text
                                         id="_IDGenText77"
                                         text="{notes}"
@@ -468,7 +415,7 @@
                 </Panel>
 
                 <!-- the Edit Panel -->
-             
+
                 <Panel
                     id="_IDGenPanel2"
                     width="70rem"
@@ -586,8 +533,6 @@
                         </VBox>
                     </HBox>
                 </Panel>
-
-                
             </VBox>
         </HBox>
     </Page>
