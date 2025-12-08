@@ -10,6 +10,7 @@ entity empDetails {
         reason         : String;
         notes          : String;
         reqStatus      : ReqStatus;
+        attachments : Composition of many Attahcments on attachments.empD = $self ;
 }
 
 type ReqStatus : String enum {
@@ -20,13 +21,15 @@ type ReqStatus : String enum {
 
 // Attahcments
 entity Attahcments {
+    key ID : UUID ;
     empD      : Association to empDetails;
-    content   : LargeBinary
+
                        @Core.MediaType                  : mediaType
-                       @Core.ContentDisposition.Filename: FileName
-                       @Core.ContentDisposition.Type    : 'inline';
+                       @Core.ContentDisposition.Filename: fileName
+                       @Core.ContentDisposition.Type    : 'inline'
     mediaType : String @Core.IsMediaType;
-    FileName  : String;
+    fileName  : String;
+    content   : LargeBinary
 }
 
 

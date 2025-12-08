@@ -3,6 +3,13 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:tnt="sap.tnt"
+    xmlns:upload="sap.m.upload"
+    xmlns:mdcat="sap.ui.mdc.actiontoolbar"
+    xmlns:mdc="sap.ui.mdc"
+    xmlns:mdct="sap.ui.mdc.table"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:Table1="sap.ui.mdc.table.Table"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="page"
@@ -61,20 +68,6 @@
                 id="searchButton"
                 tooltip="Search"
             />
-            <!-- <OverflowToolbarButton
-                id="_IDGenOverflowToolbarButton"
-                icon="sap-icon://da"
-                type="Transparent"
-                tooltip="Joule"
-                text="Joule"
-            >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData6"
-                        group="2"
-                    />
-                </layoutData>
-            </OverflowToolbarButton> -->
             <tnt:ToolHeaderUtilitySeparator
                 id="_IDGenToolHeaderUtilitySeparator"
             />
@@ -94,8 +87,9 @@
             </Avatar>
         </tnt:ToolHeader>
 
-        <!-- side navigation -->
+        <!-- side navigation + main content -->
         <HBox id="_IDGenHBox">
+            <!-- Side navigation -->
             <VBox
                 id="_IDGenVBox"
                 renderType="Bare"
@@ -121,7 +115,6 @@
                             icon="sap-icon://home"
                             press=".onGoToHome"
                         />
-
                         <tnt:NavigationListItem
                             id="_IDGenNavigationListItem1"
                             text="New Application"
@@ -141,8 +134,9 @@
                 </tnt:SideNavigation>
             </VBox>
 
-            <!-- input fields -->
+            <!-- Main content -->
             <VBox id="_IDGenVBox2">
+                <!-- Create Panel -->
                 <Panel
                     id="_IDGenPanel1"
                     width="70rem"
@@ -190,7 +184,6 @@
                                 id="id_employeeNumber"
                             />
                         </VBox>
-
                         <VBox id="id_vbox4">
                             <Label
                                 id="id_nationality_lbl"
@@ -202,6 +195,7 @@
                             />
                         </VBox>
                     </HBox>
+
                     <HBox id="id_inputs_hbox_2">
                         <VBox id="id_vbox5">
                             <Label
@@ -213,7 +207,6 @@
                                 id="id_department"
                             />
                         </VBox>
-
                         <VBox id="id_vbox6">
                             <Label
                                 id="id_title_lbl"
@@ -225,16 +218,13 @@
                             />
                         </VBox>
                     </HBox>
+
                     <HBox id="id_inputs_hbox_3">
                         <VBox id="id_vbox7">
                             <Label
                                 id="id_reason_lbl"
                                 text="Exit Reason"
                             />
-                            <!-- <Input
-                                placeholder="reason"
-                                id="id_reason"
-                            /> -->
                             <RadioButtonGroup
                                 id="RBG_reason_ID"
                                 columns="2"
@@ -252,6 +242,7 @@
                             </RadioButtonGroup>
                         </VBox>
                     </HBox>
+
                     <HBox id="_IDGenHBox1111">
                         <VBox id="id_vbox88">
                             <Label
@@ -280,6 +271,244 @@
                             />
                         </VBox>
                     </HBox>
+
+                    <!-- Attachments Table -->
+                    <HBox id="_IDGenHBox2" >
+                        <VBox id="_IDGenVBox1">
+                            <Table
+                                
+                                id="table-uploadSet"
+                                sticky="ColumnHeaders,HeaderToolbar"
+                                width="60rem"
+                                mode="MultiSelect"
+                                fixedLayout="false"
+                                inset="true"
+                                autoPopinMode="true"
+                                hiddenInPopin="None"
+                                items="{/Attahcments}"
+                                selectionChange="onSelectionChange"
+                            >
+                                <headerToolbar>
+                                    <OverflowToolbar
+                                        id="_IDGenOverflowToolbar3"
+                                    >
+                                        <Title
+                                            id="_IDGenTitle1"
+                                            text="Attached Documents"
+                                            level="H2"
+                                        />
+                                        <ToolbarSpacer
+                                            id="_IDGenToolbarSpacer1"
+                                        />
+                                        <SearchField
+                                            id="_IDGenSearchField"
+                                            width="20%"
+                                            liveChange="onSearch"
+                                        >
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="_IDGenOverflowToolbarLayoutData"
+                                                    priority="NeverOverflow"
+                                                />
+                                            </layoutData>
+                                        </SearchField>
+                                        <ToolbarSeparator
+                                            id="_IDGenToolbarSeparator"
+                                        />
+                                        <!-- Upload button placeholder for the plugin -->
+                                        <upload:ActionsPlaceholder
+                                            id="uploadButton"
+                                            placeholderFor="UploadButtonPlaceholder"
+                                        />
+                                        <Button
+                                            id="downloadSelectedButton"
+                                            text="Download"
+                                            enabled="false"
+                                            press="onDownloadFiles"
+                                        />
+                                        <MenuButton
+                                            id="_IDGenMenuButton"
+                                            text="Add"
+                                        >
+                                            <menu>
+                                                <Menu id="_IDGenMenu">
+                                                    <MenuItem
+                                                        id="_IDGenMenuItem"
+                                                        text="URL"
+                                                        press="openAddOrEditDialog"
+                                                    />
+                                                </Menu>
+                                            </menu>
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="_IDGenOverflowToolbarLayoutData1"
+                                                    priority="AlwaysOverflow"
+                                                />
+                                            </layoutData>
+                                        </MenuButton>
+                                        <Button
+                                            id="removeDocumentButton"
+                                            text="Remove"
+                                            press="onRemoveButtonPress"
+                                            enabled="false"
+                                        >
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="_IDGenOverflowToolbarLayoutData4"
+                                                    priority="AlwaysOverflow"
+                                                />
+                                            </layoutData>
+                                        </Button>
+                                        <Button
+                                            id="renameButton"
+                                            enabled="false"
+                                            press="onRenameDocument"
+                                            text="Rename"
+                                        >
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="_IDGenOverflowToolbarLayoutData6"
+                                                    priority="AlwaysOverflow"
+                                                />
+                                            </layoutData>
+                                        </Button>
+                                        <Button
+                                            id="editUrlButton"
+                                            text="Edit URL"
+                                            enabled="false"
+                                            press="onEditUrl"
+                                        >
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData
+                                                    id="_IDGenOverflowToolbarLayoutData7"
+                                                    priority="AlwaysOverflow"
+                                                />
+                                            </layoutData>
+                                        </Button>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+
+                                <dependents>
+                                    <plugins.UploadSetwithTable
+                                        uploadUrl="/uploadFiles"
+                                        multiple="true"
+                                        beforeUploadStarts="onBeforeUploadStarts"
+                                        itemRenamed="onDocumentRenamedSuccess"
+                                        uploadCompleted="onUploadCompleted"
+                                        onActivated="onPluginActivated"
+                                        cloudFilePickerEnabled="true"
+                                        actions="uploadButton"
+                                        previewDialog="FilePreviewDialog"
+                                    >
+                                        <rowConfiguration>
+                                            <upload.UploadItemConfiguration
+                                                fileNamePath="fileName"
+                                                mediaTypePath="mediaType"
+                                                urlPath="url"
+                                                previewablePath="previewable"
+                                                fileSizePath="fileSize"
+                                                isTrustedSourcePath="trustedSource"
+                                            />
+                                        </rowConfiguration>
+                                    </plugins.UploadSetwithTable>
+                                    <upload.FilePreviewDialog
+                                        id="FilePreviewDialog"
+                                        showCarouselArrows="true"
+                                        maxFileSizeforPreview="50"
+                                    />
+                                </dependents>
+                                <columns>
+                                    <Column
+                                        id="fileName"
+                                        importance="High"
+                                    >
+                                        <header>
+                                            <Label
+                                                id="_IDGenLabel"
+                                                text="File Name"
+                                            />
+                                        </header>
+                                    </Column>
+                                    <Column id="id">
+                                        <header>
+                                            <Label
+                                                id="_IDGenLabel1"
+                                                text="ID"
+                                            />
+                                        </header>
+                                    </Column>
+
+                                    <Column id="status">
+                                        <header>
+                                            <Label
+                                                id="_IDGenLabel3"
+                                                text="Status"
+                                            />
+                                        </header>
+                                    </Column>
+                                    <Column
+                                        id="actionButton"
+                                        importance="High"
+                                    />
+                                </columns>
+
+                                <items>
+                                    <ColumnListItem
+                                        id="_IDGenColumnListItem1"
+                                    >
+                                        <cells>
+                                            <HBox id="_IDGenHBox3">
+                                                <Image
+                                                    id="_IDGenImage1"
+                                                    src="{documents>imageUrl}"
+                                                    class="sapMUSTItemImage sapMUSTItemIcon"
+                                                    visible="{= ${documents>imageUrl} !== undefined}"
+                                                />
+                                                <core:Icon
+                                                    id="_IDGenIcon"
+                                                    src="{parts: ['documents>mediaType', 'documents>fileName'], formatter: '.getIconSrc' }"
+                                                    visible="{= ${documents>imageUrl} === undefined || ${documents>imageUrl} === '' }"
+                                                    class="sapMUSTItemImage sapMUSTItemIcon"
+                                                />
+                                                <VBox
+                                                    id="_IDGenVBox3"
+                                                    class="sapUiTinyMargin sapUiSmallMarginBegin"
+                                                >
+                                                    <Link
+                                                        id="_IDGenLink"
+                                                        text="{documents>fileName}"
+                                                        press="openPreview"
+                                                        class="sapUiTinyMarginBottom"
+                                                    />
+                                                    <Text
+                                                        id="_IDGenText16"
+                                                        text="{documents>documentType}"
+                                                    />
+                                                </VBox>
+                                            </HBox>
+                                            <Text
+                                                id="_IDGenText17"
+                                                text="{documents>id}"
+                                            />
+
+                                            <Text
+                                                id="_IDGenText18"
+                                                text="{documents>status}"
+                                            />
+                                                   <Button
+                                                id="_IDGenButton"
+                                                class="sapUiTinyMarginBegin"
+                                                type="Transparent"
+                                                icon="sap-icon://decline"
+                                                press="onRemoveHandler"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                    </HBox>
+
                     <HBox id="id_buttons_hbox_1">
                         <VBox id="id_buttons_vbox_1">
                             <Button
@@ -290,13 +519,14 @@
                         </VBox>
                     </HBox>
                 </Panel>
+
+                <!-- All Applications Panel -->
                 <Panel
                     id="_IDGenPanel"
                     headerText="All Applcations"
                     visible="false"
                     class="sapUiResponsiveMargin"
                 >
-                    <!-- all applications -->
                     <Table
                         id="_IDGenTable1"
                         items="{/clearance}"
@@ -406,7 +636,7 @@
                                     <Button
                                         id="Actions_btn_id"
                                         text="..."
-                                        press="onActionPressed($event)"
+                                        press="onActionPressed"
                                     />
                                 </cells>
                             </ColumnListItem>
@@ -414,8 +644,7 @@
                     </Table>
                 </Panel>
 
-                <!-- the Edit Panel -->
-
+                <!-- Edit Panel -->
                 <Panel
                     id="_IDGenPanel2"
                     width="70rem"
@@ -462,7 +691,6 @@
                                 id="id_employeeNumber1"
                             />
                         </VBox>
-
                         <VBox id="id_vbox41">
                             <Label
                                 id="id_nationality_lbl1"
@@ -485,7 +713,6 @@
                                 id="id_department1"
                             />
                         </VBox>
-
                         <VBox id="id_vbox61">
                             <Label
                                 id="id_title_lbl1"

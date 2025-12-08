@@ -1,30 +1,30 @@
-//const { func } = require("@sap/cds/lib/ql/cds-ql");
-
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageBox",
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/m/plugins/UploadSetwithTable",
 
-], (Controller, MessageBox, Fragment, Filter, FilterOperator) => {
+], (Controller, MessageBox, Fragment, Filter, FilterOperator ,UploadSetwithTable) => {
     "use strict";
 
     return Controller.extend("clearance001.controller.Main", {
         onInit() {
+            //this.documentTypes = this.getFileCategories();
+            //this.oMockServer = new MockServer();
+            // var docsModel = this.byId("table-uploadSet").getModel("documents");
+            // var oBinding = 
         },
         submit: function () {
             debugger;
-            //var id = this.getView().byId("id_ID").getValue();
+            
             var employeeName = this.getView().byId("id_employeeName").getValue();
             var employeeNumber = this.getView().byId("id_employeeNumber").getValue();
             var nationality = this.getView().byId("id_nationality").getValue();
             var department = this.getView().byId("id_department").getValue();
             var title = this.getView().byId("id_title").getValue();
-            //var reason = this.getView().byId("id_reason").getValue();
             var oRadioButtonGroup = this.getView().byId("RBG_reason_ID");
-            // var RD_Resignation = this.getView.byId("RB_resignation_id").getValue();
-            // var RD_Vacation = this.getView.byId("RB_vacation_ID").getValue();
             var notes = this.getView().byId("id_notes").getValue();
 
             // the clearance Reason 
@@ -63,7 +63,6 @@ sap.ui.define([
                 MessageBox.error("Error when submitting the Form");
                 console.error("Error submitting the Form : " + err);
             })
-
         },
 
         onCollapseExpandPress() {
@@ -208,14 +207,14 @@ sap.ui.define([
         },
 
         formatReqStatusText: function (sStatus) {
-           debugger ;
+            debugger;
             switch (sStatus) {
                 case "A":
                     return "Approved";
                 case "R":
                     return "Rejected";
                 default:
-                    return "Pending" ;      
+                    return "Pending";
             }
         },
         formatReqStatusState: function (sStatus) {
@@ -229,6 +228,124 @@ sap.ui.define([
                     return sap.ui.core.ValueState.warning;
             }
 
+        },
+        onBeforeUploadStarts: function () {
+            // This code block is only for demonstration purpose to simulate XHR requests, hence starting the mockserver.
+            this.oMockServer.start();
         }
+        /// handle attachmants Part 
+
+
+        // onPluginActivated: function (oEvent) {
+        //     this.oUploadPluginInstance = oEvent.getParameter("oPlugin");
+        // },
+        // getIconSrc: function (mediaType, thumbnailUrl) {
+        //     return UploadSetwithTable.getIconForFileType(mediaType, thumbnailUrl);
+        // },
+        // // Table row selection handler
+        // onSelectionChange: function (oEvent) {
+        //     const oTable = oEvent.getSource();
+        //     const aSelectedItems = oTable?.getSelectedContexts();
+        //     const oDownloadBtn = this.byId("downloadSelectedButton");
+        //     const oEditUrlBtn = this.byId("editUrlButton");
+        //     const oRenameBtn = this.byId("renameButton");
+        //     const oRemoveDocumentBtn = this.byId("removeDocumentButton");
+
+        //     if (aSelectedItems.length > 0) {
+        //         oDownloadBtn.setEnabled(true);
+        //     } else {
+        //         oDownloadBtn.setEnabled(false);
+        //     }
+        //     if (aSelectedItems.length === 1) {
+        //         oEditUrlBtn.setEnabled(true);
+        //         oRenameBtn.setEnabled(true);
+        //         oRemoveDocumentBtn.setEnabled(true);
+        //     } else {
+        //         oRenameBtn.setEnabled(false);
+        //         oEditUrlBtn.setEnabled(false);
+        //         oRemoveDocumentBtn.setEnabled(false);
+        //     }
+        // },
+        // // Download files handler
+        // onDownloadFiles: function (oEvent) {
+        //     const oContexts = this.byId("table-uploadSet").getSelectedContexts();
+        //     if (oContexts && oContexts.length) {
+        //         oContexts.forEach((oContext) => this.oUploadPluginInstance.download(oContext, true));
+        //     }
+        // },
+        // // UploadCompleted event handler
+        // onUploadCompleted: function (oEvent) {
+        //     const oModel = this.byId("table-uploadSet").getModel("documents");
+        //     const iResponseStatus = oEvent.getParameter("status");
+
+        //     // check for upload is sucess
+        //     if (iResponseStatus === 201) {
+        //         oModel.refresh(true);
+        //         setTimeout(function () {
+        //             MessageToast.show("Document Added");
+        //         }, 1000);
+        //     }
+        //     // This code block is only for demonstration purpose to simulate XHR requests, hence restoring the server to not fake the xhr requests.
+        //     this.oMockServer.restore();
+        // },
+        // onRemoveButtonPress: function (oEvent) {
+        //     var oTable = this.byId("table-uploadSet");
+        //     const aContexts = oTable.getSelectedContexts();
+        //     this.removeItem(aContexts[0]);
+        // },
+        // onRemoveHandler: function (oEvent) {
+        //     var oSource = oEvent.getSource();
+        //     const oContext = oSource.getBindingContext("documents");
+        //     this.removeItem(oContext);
+        // },
+        // removeItem: function (oContext) {
+        //     const oModel = this.getView().getModel("documents");
+        //     const oTable = this.byId("table-uploadSet");
+        //     MessageBox.warning(
+        //         "Are you sure you want to remove the document" + " " + oContext.getProperty("fileName") + " " + "?",
+        //         {
+        //             icon: MessageBox.Icon.WARNING,
+        //             actions: ["Remove", MessageBox.Action.CANCEL],
+        //             emphasizedAction: "Remove",
+        //             styleClass: "sapMUSTRemovePopoverContainer",
+        //             initialFocus: MessageBox.Action.CANCEL,
+        //             onClose: function (sAction) {
+        //                 if (sAction !== "Remove") {
+        //                     return;
+        //                 }
+        //                 var spath = oContext.getPath();
+        //                 if (spath.split("/")[2]) {
+        //                     var index = spath.split("/")[2];
+        //                     var data = oModel.getProperty("/items");
+        //                     data.splice(index, 1);
+        //                     oModel.refresh(true);
+        //                     if (oTable && oTable.removeSelections) {
+        //                         oTable.removeSelections();
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     );
+        // },
+        // getFileCategories: function () {
+        //     return [
+        //         { categoryId: "Invoice", categoryText: "Invoice" },
+        //         { categoryId: "Specification", categoryText: "Specification" },
+        //         { categoryId: "Attachment", categoryText: "Attachment" },
+        //         { categoryId: "Legal Document", categoryText: "Legal Document" }
+        //     ];
+        // },
+        // getFileSizeWithUnits: function (iFileSize) {
+        //     return UploadSetwithTable.getFileSizeWithUnits(iFileSize);
+        // },
+        // openPreview: function (oEvent) {
+        //     const oSource = oEvent.getSource();
+        //     const oBindingContext = oSource.getBindingContext("documents");
+        //     if (oBindingContext && this.oUploadPluginInstance) {
+        //         this.oUploadPluginInstance.openFilePreview(oBindingContext);
+        //     }
+        // }
+
+        //// Trigger the WorkFlow ///////
     });
 });

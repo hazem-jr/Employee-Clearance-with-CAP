@@ -1,0 +1,68 @@
+<mvc:FragmentDefinition
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:plugin="sap.m.plugins">
+
+    <Dialog
+        id="idAttachmentsDialog"
+        title="Attachments"
+        contentWidth="700px"
+        contentHeight="450px"
+        stretchOnPhone="true">
+
+        <Table
+            id="idAttachmentsTable"
+            mode="SingleSelectMaster"
+            items="{
+                path: 'attachments'   
+            }">
+
+            <!-- Upload plugin -->
+            <plugins>
+                <plugin:UploadSetwithTable
+                    id="idUploadSetWithTable"
+                    uploadEnabled="true"
+                    instantUpload="false"
+                    beforeItemAdded=".onBeforeAttachmentAdded"
+                    itemRemoved=".onAttachmentItemRemoved" />
+            </plugins>
+
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title text="Attachments" level="H4" />
+                    <ToolbarSpacer />
+                    <!-- this button is rendered by the plugin as "Add" button, but we keep for layout -->
+                </OverflowToolbar>
+            </headerToolbar>
+
+            <columns>
+                <Column>
+                    <Text text="File Name" />
+                </Column>
+                <Column>
+                    <Text text="Type" />
+                </Column>
+                <Column>
+                    <Text text="Uploaded At" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem type="Active" press=".onAttachmentItemPress">
+                    <cells>
+                        <ObjectIdentifier
+                            title="{fileName}"
+                            text="{mediaType}" />
+                        <Text text="{mediaType}" />
+                        <Text text="{path: 'createdAt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short' }}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+
+        <beginButton>
+            <Button text="Close" press=".onAttachmentsClose" />
+        </beginButton>
+    </Dialog>
+</mvc:FragmentDefinition>
